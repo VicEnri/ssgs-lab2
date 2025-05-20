@@ -19,3 +19,4 @@ dist/
 .pytest_cache/
 htmlcov/
 node_modules/
+coverage/
