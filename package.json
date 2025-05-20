@@ -1,12 +1,27 @@
 {
   "name": "labo-string",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Questo progetto fornisce una base per una semplice Command-Line Interface (CLI) Node.js che offre diverse utilità per la manipolazione di stringhe.",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "node src/index.js",
+    "test": "jest"
+  },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VicEnri/ssg-lab2.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "enrico vicale <enricovicale99@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VicEnri/ssgs-calc/issues"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=8.0.0"
+  }
 }

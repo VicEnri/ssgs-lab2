@@ -2,7 +2,7 @@
 
 Questo progetto fornisce una base per una semplice Command-Line Interface (CLI) Node.js che offre diverse utilità per la manipolazione di stringhe.
 
-## Nota Importante per lo Studente - Setup Iniziale del Progetto
+## Setup Iniziale del Progetto
 
 Benvenuto/a a `labo-string`!
 
@@ -22,9 +22,3 @@ Buona analisi e buon lavoro!
 * Conteggio delle occorrenze di ciascun carattere in una stringa.
 
 ## Installazione e Avvio
-
-*(Questa sezione dovrà essere completata dallo studente come parte dell'Esercizio 1, includendo i comandi per installare le dipendenze ed eseguire l'applicazione e i test).*
-
----
-
-*Suggerimento: Presta particolare attenzione ai requisiti dell'Esercizio 1 del laboratorio per completare e correggere questo README e gli altri file di configurazione.*
