@@ -9,13 +9,13 @@
   },
    "repository": {
     "type": "git",
-    "url": "git+https://github.com/VicEnri/ssg-lab2.git"
+    "url": "git+https://github.com/VicEnri/ssgs-lab2.git"
   },
   "keywords": [],
   "author": "enrico vicale <enricovicale99@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VicEnri/ssgs-calc/issues"
+    "url": "https://github.com/VicEnri/ssgs-lab2/issues"
   },
   "devDependencies": {
     "jest": "^29.7.0"
