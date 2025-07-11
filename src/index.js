@@ -1,56 +1,69 @@
+const readline = require('readline');
 const {
-    reverseString,
-    isPalindrome,
-    truncateString,
-    countCharacters,
-} = require('./src/stringUtils');
+  reverseString,
+  isPalindrome,
+  truncateString,
+  countCharacters,
+} = require('./stringUtils.js');
 
-// Otteniamo gli argomenti dalla riga di comando
-// process.argv[0] è 'node', process.argv[1] è il percorso dello script
-const args = process.argv.slice(2);
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-if (args.length < 2) {
-    console.error("Utilizzo: node index.js <numero_funzione> <stringa_input> [parametro_aggiuntivo]");
-    console.error("Numero funzione:");
-    console.error("  1: Inverti Stringa (reverseString)");
-    console.error("  2: Controlla Palindromo (isPalindrome)");
-    console.error("  3: Tronca Stringa (truncateString) - richiede [lunghezza_massima]");
-    console.error("  4: Conta Caratteri (countCharacters)");
-    process.exit(1); // Esce con codice di errore
+function showMenu() {
+  console.log('\nSeleziona un’operazione:');
+  console.log('1. Inverti stringa');
+  console.log('2. Controlla palindromo');
+  console.log('3. Tronca stringa');
+  console.log('4. Conta caratteri');
+  console.log('5. Esci');
 }
 
-const functionChoice = parseInt(args[0], 10);
-const mainString = args[1];
-let result;
-
-switch (functionChoice) {
-    case 1: // reverseString
-        result = reverseString(mainString);
-        console.log(`Stringa invertita: "${result}"`);
-        break;
-    case 2: // isPalindrome
-        result = isPalindrome(mainString);
-        console.log(`La stringa "${mainString}" è palindroma? ${result}`);
-        break;
-    case 3: // truncateString
-        if (args.length < 3) {
-            console.error("Per la funzione 'Tronca Stringa' (3), è necessaria una lunghezza massima.");
-            console.error("Utilizzo: node index.js 3 <stringa_input> <lunghezza_massima>");
-            process.exit(1);
-        }
-        const maxLength = parseInt(args[2], 10);
-        if (isNaN(maxLength) || maxLength < 0) {
-            console.error("La lunghezza massima per troncare deve essere un numero positivo.");
-            process.exit(1);
-        }
-        result = truncateString(mainString, maxLength);
-        console.log(`Stringa troncata (max ${maxLength}): "${result}"`);
-        break;
-    case 4: // countCharacters
-        result = countCharacters(mainString);
-        console.log(`Conteggio caratteri per "${mainString}":`, result);
-        break;
-    default:
-        console.error(`Numero funzione non valido: ${functionChoice}. Scegliere un numero da 1 a 4.`);
-        process.exit(1);
+function ask(question) {
+  return new Promise(resolve => rl.question(question, resolve));
 }
+
+async function main() {
+  console.log('🤖 String CLI Utility');
+  while (true) {
+    showMenu();
+    const choice = await ask('Numero funzione (1–5): ');
+    switch (choice.trim()) {
+      case '1': {
+        const s = await ask('Inserisci la stringa da invertire: ');
+        console.log(`Risultato: "${reverseString(s)}"`);
+        break;
+      }
+      case '2': {
+        const s = await ask('Inserisci la stringa da controllare: ');
+        console.log(`Palindroma? ${isPalindrome(s)}`);
+        break;
+      }
+      case '3': {
+        const s = await ask('Inserisci la stringa da troncare: ');
+        const nRaw = await ask('Lunghezza massima: ');
+        const n = parseInt(nRaw, 10);
+        if (isNaN(n) || n < 0) {
+          console.log('⚠️ Lunghezza non valida, deve essere un numero ≥ 0');
+        } else {
+          console.log(`Risultato: "${truncateString(s, n)}"`);
+        }
+        break;
+      }
+      case '4': {
+        const s = await ask('Inserisci la stringa da analizzare: ');
+        console.log('Conteggio caratteri:', countCharacters(s));
+        break;
+      }
+      case '5':
+        console.log('👋 Uscita. A presto!');
+        rl.close();
+        return;
+      default:
+        console.log('⚠️ Scelta non valida, riprova.');
+    }
+  }
+}
+
+main();

@@ -1,13 +1,15 @@
-name: Node.js CI with Coverage
+name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  test-and-coverage:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,14 +22,25 @@ jobs:
           node-version: '22.x'
           cache: 'npm'
           cache-dependency-path: package-lock.json
-          
+
       - name: Install dependencies
         run: npm ci
 
       - name: Run tests with coverage
         run: npm test
 
+      - name: Verify coverage directory exists
+        if: always()
+        run: |
+          if [ -d coverage ]; then
+            echo "✅ coverage directory found"
+          else
+            echo "❌ coverage directory NOT found"
+            exit 1
+          fi
+
       - name: Upload coverage report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report

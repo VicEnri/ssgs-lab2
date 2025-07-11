@@ -2,16 +2,21 @@
   "name": "labo-string",
   "version": "1.0.0",
   "description": "Questo progetto fornisce una base per una semplice Command-Line Interface (CLI) Node.js che offre diverse utilità per la manipolazione di stringhe.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start" : "node src/index.js",
-    "test": "jest"
+    "start": "node src/index.js",
+    "test": "jest --coverage --verbose"
   },
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/VicEnri/ssgs-lab2.git"
   },
-  "keywords": ["cli", "string", "utility", "nodejs"],
+  "keywords": [
+    "cli",
+    "string",
+    "utility",
+    "nodejs"
+  ],
   "homepage": "https://github.com/VicEnri/ssgs-lab2#readme",
   "author": "enrico vicale <enricovicale99@gmail.com>",
   "license": "ISC",
@@ -19,10 +24,30 @@
     "url": "https://github.com/VicEnri/ssgs-lab2/issues"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^30.0.4"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**",
+      "!src/index.js"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js",
+      "**/tests/**/*.test.js"
+    ]
   },
   "engines": {
     "node": ">=22.0.0",
-    "npm": ">=8.0.0"
+    "npm": ">=10.0.0"
+  },
+  "directories": {
+    "test": "tests"
   }
 }
